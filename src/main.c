@@ -27,7 +27,7 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
 
   if(strcmp(input, "exit") == 0) exit(0); // isnt input here a char how did we compare it to a string ??
 
-  else if (strncmp(input, "echo", 3) == 0) printf("%s", input + 5);
+  else if (strncmp(input, "echo", 3) == 0) printf("%s\n", input + 5);
 
   else
   printf("%s: command not found\n", input);
