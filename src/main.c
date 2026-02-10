@@ -32,6 +32,8 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
   else
   printf("%s: command not found\n", input);
 
+  exit(0);
+
 }
 
   return 0;
