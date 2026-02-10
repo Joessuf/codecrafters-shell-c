@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
-while(1)
+while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the core of a shell.
 {
   // Flush after every printf
 
@@ -23,6 +24,7 @@ while(1)
 
   printf("%s: command not found\n", input);
 }
+_exit(0);
   return 0;
 
 }
