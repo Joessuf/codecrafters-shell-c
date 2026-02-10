@@ -38,18 +38,27 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
       else if (strcmp(input + 5, "exit") == 0) printf("%s is a shell builtin\n", input + 5);
       else {
       while (dir != NULL) {
-        char full_path[1024]; // why inside the loop
-        snprintf(full_path, sizeof(full_path), "%s/%s", dir, input);
+          char full_path[1024];
+          snprintf(full_path, sizeof(full_path), "%s/%s", dir, input + 5);
+
+
         if (access(full_path, X_OK) == 0){
-            printf("%s is %s\n", input, full_path);
+            printf("%s is %s\n", input + 5, full_path);
             free(path_copy);
-            return 1; }
+             break;
+        }
         dir = strtok(NULL, ":");
-        free(path_copy);
+
             }
 
 
-       printf("%s: not found\n", input + 5);
+      if (dir == NULL) {
+
+                printf("%s: not found\n", input + 5);
+
+              }
+
+
   }
   }
 
