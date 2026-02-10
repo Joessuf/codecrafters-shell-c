@@ -6,6 +6,7 @@
 int main(int argc, char *argv[]) {
 while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the core of a shell.
 {
+
   // Flush after every printf
 
   setbuf(stdout, NULL);
@@ -23,6 +24,8 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
   input[strlen(input) - 1] = '\0';
 
   printf("%s: command not found\n", input);
+
+  if(input[100] == 'exit') exit(0);
 }
   _exit(0);
   return 0;
