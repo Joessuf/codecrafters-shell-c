@@ -26,8 +26,8 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
 
 
   if(strcmp(input, "exit") == 0) printf("exit is a shell builtin");
-  else if(strcmp(input, "echo") == 0) printf("echo is a shell builtin");
-  else if(strcmp(input, "type") == 0) printf("type is a shell builtin");
+  if(strcmp(input, "echo") == 0) printf("echo is a shell builtin");
+  if(strcmp(input, "type") == 0) printf("type is a shell builtin");
 
   else
   printf("%s: command not found\n", input);
