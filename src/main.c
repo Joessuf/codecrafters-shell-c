@@ -19,13 +19,13 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
 
   fgets(input, 100, stdin); // waits for input , takes 100 char's and listens to the keyboard
 
+  if(strcmp(input, "exit") == 0) break;
   // Remove the trailing newline
 
   input[strlen(input) - 1] = '\0';
 
   printf("%s: command not found\n", input);
 
-  if(strcmp(input, "exit") == 0) break;
 }
 
   return 0;
