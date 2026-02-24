@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#define _GNU_SOURCE
 
 int main(int argc, char *argv[]) {
 while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the core of a shell.
@@ -22,6 +23,7 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
   char *path_env = getenv("PATH"); // why is it a pointer ??
   char *path_copy = strdup(path_env);
   char *dir = strtok(path_copy, ":");
+  char *args [] = {strtok(input , " "), strtok(input + , ":")};
   // Remove the trailing newline
 
   input[strlen(input) - 1] = '\0';
@@ -36,30 +38,31 @@ while(1) // REPL (Read-Eval-Print Loop) is an interactive loop that forms the co
       if (strcmp(input + 5, "type") == 0) printf("%s is a shell builtin\n", input + 5);
       else if (strcmp(input + 5, "echo") == 0) printf("%s is a shell builtin\n", input + 5);
       else if (strcmp(input + 5, "exit") == 0) printf("%s is a shell builtin\n", input + 5);
-      else {
+      else
+      {
       while (dir != NULL) {
           char full_path[1024];
           snprintf(full_path, sizeof(full_path), "%s/%s", dir, input + 5);
 
 
-        if (access(full_path, X_OK) == 0){
+        if (access(full_path, X_OK) == 0)
+        {
+             execvpe(input + 5, args, path_env);
             printf("%s is %s\n", input + 5, full_path);
             free(path_copy);
              break;
         }
         dir = strtok(NULL, ":");
-
-            }
-
-
-      if (dir == NULL) {
-
-                printf("%s: not found\n", input + 5);
-
-              }
+        }
 
 
-  }
+      if (dir == NULL)
+      {
+          printf("%s: not found\n", input + 5);
+      }
+
+
+      }
   }
 
   else
